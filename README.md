@@ -4,15 +4,10 @@ A lightweight VSCode extension that automatically cleans up your class and class
 Features
 
 ✨ Automatic Formatting: Cleans up class attributes on file save.
-
 🚫 Duplicate Removal: Intelligently finds and removes duplicate class names.
-
 🔧 Configurable: Easily enable/disable format-on-save, customize target file types, and define which directories to process.
-
 🎯 Smart Targeting: By default, it focuses on files within a src directory, but you can configure it for any project structure.
-
 ⚡ Lightweight & Fast: Built to be fast and efficient with minimal performance impact.
-
 🤝 Broad Support: Works with both className (React) and class (HTML, Vue, Svelte).
 What It Does
 
