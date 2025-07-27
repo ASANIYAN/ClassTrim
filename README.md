@@ -1,154 +1,200 @@
-# ClassTrim
+ClassTrim
 
-A lightweight VSCode extension that automatically cleans up `className` attributes by removing extra whitespace and normalizing spacing in React/JSX files.
+A lightweight VSCode extension that automatically cleans up your class and className attributes. It removes extra whitespace, deletes duplicate classes, and normalizes spacing to keep your markup tidy.
+Features
 
-## Features
+✨ Automatic Formatting: Cleans up class attributes on file save.
+🚫 Duplicate Removal: Intelligently finds and removes duplicate class names.
+🔧 Configurable: Easily enable/disable format-on-save, customize target file types, and define which directories to process.
+🎯 Smart Targeting: By default, it focuses on files within a src directory, but you can configure it for any project structure.
+⚡ Lightweight & Fast: Built to be fast and efficient with minimal performance impact.
+🤝 Broad Support: Works with both className (React) and class (HTML, Vue, Svelte).
+What It Does
 
-✨ **Automatic Formatting**: Formats `className` attributes on file save (Prettier-style behavior)  
-🎯 **Smart Targeting**: Only processes the currently active file  
-📁 **Source Directory Focus**: Works exclusively on files within `src` directories  
-⚡ **Lightweight**: Fast and efficient with minimal performance impact  
-🔧 **Zero Configuration**: Works out of the box, no setup required
+ClassTrim normalizes your class attributes by:
 
-## What It Does
+    Removing leading and trailing whitespace
 
-ClassTrim normalizes `className` attribute spacing by:
+    Converting multiple consecutive spaces to single spaces
 
-- **Removing leading and trailing whitespace**
-- **Converting multiple consecutive spaces to single spaces**
-- **Supporting all JSX className formats**
+    Deleting any duplicate classes from the list
 
-### Before and After
+    Supporting all JSX className formats and standard HTML class
 
-**Before:**
+Before and After
 
-```jsx
-<div className="  container   header   button  ">
+Before:
+
+<div className="  container   header  container  button  ">
 <span className={'  nav-item   active  '}>
-<button className={`  btn   primary   large  `}>
-```
+<button class="btn   btn   primary">
 
-**After:**
+After:
 
-```jsx
 <div className="container header button">
 <span className={'nav-item active'}>
-<button className={`btn primary large`}>
-```
+<button class="btn primary">
 
-## Supported File Types
+Supported File Types
 
-- **TypeScript React** (`.tsx`)
-- **JavaScript React** (`.jsx`)
+    TypeScript React (.tsx)
 
-## How It Works
+    JavaScript React (.jsx)
 
-1. **Save Detection**: Automatically triggers when you save a file (`Ctrl+S` / `Cmd+S`)
-2. **File Validation**: Checks if the saved file is:
-   - Currently active in the editor
-   - A supported file type (`.tsx` or `.jsx`)
-   - Located within a `src` directory
-3. **Pattern Matching**: Finds all `className` attributes using regex patterns
-4. **Whitespace Normalization**: Cleans up spacing issues
-5. **Seamless Application**: Applies changes as part of the save operation
+    HTML (.html)
 
-## Installation
+    Vue (.vue)
 
-### From VSCode Marketplace
+    Svelte (.svelte)
 
-1. Open VSCode
-2. Go to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "ClassTrim"
-4. Click "Install"
+    And any other language you configure!
 
-### From VSIX File
+How It Works
 
-1. Download the `.vsix` file
-2. Open VSCode
-3. Go to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-4. Click the "..." menu → "Install from VSIX..."
-5. Select the downloaded `.vsix` file
+    Save Detection: Triggers when you save a file (Ctrl+S / Cmd+S), if enabled.
 
-## Requirements
+    File Validation: Checks if the saved file matches your configured language types and path requirements.
 
-- **VSCode Version**: 1.92.0 or higher
-- **File Location**: Files must be within a `src` directory
-- **File Types**: Only `.tsx` and `.jsx` files are processed
+    Pattern Matching: Finds all class and className attributes using an efficient regex pattern.
 
-## Usage
+    Normalization: Cleans up whitespace and removes duplicate classes.
 
-No setup required! ClassTrim works automatically:
+    Seamless Application: Applies changes as part of the save operation.
 
-1. Open a React/JSX file in your `src` directory
-2. Edit your `className` attributes
-3. Save the file (`Ctrl+S` / `Cmd+S`)
-4. ClassTrim automatically cleans up the spacing
+Installation
+From VSCode Marketplace
 
-## Configuration
+    Open VSCode
 
-ClassTrim currently requires no configuration and works with sensible defaults. All `className` attributes in supported files are automatically processed on save.
+    Go to Extensions (Ctrl+Shift+X / Cmd+Shift+X)
 
-## Development
+    Search for "ClassTrim"
 
-### Prerequisites
+    Click "Install"
 
-- Node.js 16 or higher
-- VSCode 1.92.0 or higher
+From VSIX File
 
-### Setup
+    Download the .vsix file
 
-```bash
+    Open VSCode
+
+    Go to Extensions (Ctrl+Shift+X / Cmd+Shift+X)
+
+    Click the "..." menu → "Install from VSIX..."
+
+    Select the downloaded .vsix file
+
+Configuration
+
+You can easily customize ClassTrim to fit your project's needs. Open your settings.json file (Ctrl+Shift+P → Open User Settings (JSON)) and add any of the following options:
+
+Setting
+
+Type
+
+Default
+
+Description
+
+classtrim.formatOnSave
+
+boolean
+
+true
+
+Enable or disable formatting when a file is saved.
+
+classtrim.targetLanguages
+
+string[]
+
+["javascriptreact", "typescriptreact", "html", "vue", "svelte"]
+
+An array of VS Code language identifiers to apply formatting to.
+
+classtrim.requiredPathSegment
+
+string
+
+"src"
+
+A directory name that must be in the file's path. Leave empty ("") to allow any path.
+Example Configuration
+
+Here is an example of a custom configuration in your settings.json:
+
+{
+"classtrim.formatOnSave": true,
+"classtrim.targetLanguages": [
+"javascriptreact",
+"typescriptreact",
+"html",
+"vue",
+"svelte"
+],
+"classtrim.requiredPathSegment": "app"
+}
+
+Development
+Prerequisites
+
+    Node.js 16 or higher
+
+    VSCode 1.92.0 or higher
+
+Setup
+
 # Clone the repository
+
 git clone <repository-url>
 cd classtrim
 
 # Install dependencies
+
 npm install
 
 # Open in VSCode
+
 code .
-```
 
-### Building
+Building
 
-```bash
 # Compile TypeScript
+
 npm run compile
 
 # Package extension
+
 npm run package
-```
 
-### Testing
+Testing
 
-```bash
 # Run tests
+
 npm test
 
 # Test in Extension Development Host
+
 # Press F5 in VSCode to launch a new Extension Development Host window
-```
 
-## Contributing
+<!-- Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+    Fork the repository
 
-## Known Issues
+    Create a feature branch (git checkout -b feature/amazing-feature)
 
-- Currently only supports files within `src` directories
-- Only processes `.tsx` and `.jsx` files (HTML support planned)
+    Commit your changes (git commit -m 'Add amazing feature')
 
-## Roadmap
+    Push to the branch (git push origin feature/amazing-feature)
 
-- [ ] HTML `class` attribute support (🚧 in progress)
-- [ ] CSS class name formatting
-- [ ] Configuration options for custom spacing rules
-- [ ] Support for files outside `src` directories
+    Open a Pull Request
 
----
+Roadmap
 
-**Happy coding with cleaner className attributes!** 🎉
+    [x] HTML class attribute support
+
+    [x] Configuration options
+
+    [ ] CSS class name formatting (e.g., sorting) based on user preference -->
+
+Happy coding with cleaner class attributes! 🎉

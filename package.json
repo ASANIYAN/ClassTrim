@@ -17,7 +17,31 @@
         "command": "classtrim.trimFiles",
         "title": "Trim Files"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "ClassTrim",
+      "properties": {
+        "classtrim.formatOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable formatting when a file is saved."
+        },
+        "classtrim.targetLanguages": {
+          "type": "array",
+          "default": [
+            "javascriptreact",
+            "typescriptreact",
+            "html"
+          ],
+          "description": "List of language identifiers to apply formatting to."
+        },
+        "classtrim.requiredPathSegment": {
+          "type": "string",
+          "default": "src",
+          "description": "A directory name that must be in the file's path (e.g., 'src'). Leave empty to allow any path."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
