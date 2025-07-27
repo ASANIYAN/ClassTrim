@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import { logger } from "../utils/logger";
 
 /**
  * A single, powerful regular expression to find all types of class attributes.
@@ -86,8 +85,5 @@ export function formatClassNames(
     }
   }
 
-  logger.log(
-    `=== Created ${edits.length} text edits for ${document.fileName} ===`
-  );
   return edits;
 }

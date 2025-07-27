@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import { formatClassNames } from "./formatting/classNameFormatter";
 import { isTargetFile } from "./utils/fileUtils";
-import { logger } from "./utils/logger";
 
 export function activate(context: vscode.ExtensionContext) {
   // Register the on-save event listener
@@ -23,8 +22,6 @@ export function activate(context: vscode.ExtensionContext) {
       activeEditor.document === document &&
       isTargetFile(document)
     ) {
-      logger.log(`Formatting on save: ${document.fileName}`);
-
       // Delegate the formatting logic to the formatter module
       const edits = formatClassNames(document);
 
@@ -44,7 +41,6 @@ export function activate(context: vscode.ExtensionContext) {
       // Iterate over all currently open documents
       for (const document of vscode.workspace.textDocuments) {
         if (isTargetFile(document)) {
-          logger.log(`Manually formatting: ${document.fileName}`);
           const edits = formatClassNames(document);
           if (edits.length > 0) {
             // Add the edits for this file to the bulk workspace edit

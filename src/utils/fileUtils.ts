@@ -1,6 +1,5 @@
 import * as vscode from "vscode";
 import * as path from "path";
-import { logger } from "./logger";
 
 function getSetting<T>(key: string): T | undefined {
   return vscode.workspace.getConfiguration("classtrim").get<T>(key);
@@ -25,11 +24,11 @@ export function isTargetFile(document: vscode.TextDocument): boolean {
   const isLanguageMatch = targetLanguageSet.has(document.languageId);
   const isPathMatch = hasRequiredPathSegment(document.fileName);
 
-  if (isLanguageMatch && !isPathMatch) {
-    logger.log(
-      `Skipping ${document.fileName}: Language matches, but not in required path.`
-    );
-  }
+  // if (isLanguageMatch && !isPathMatch) {
+  //   logger.log(
+  //     `Skipping ${document.fileName}: Language matches, but not in required path.`
+  //   );
+  // }
 
   return isLanguageMatch && isPathMatch;
 }
