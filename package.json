@@ -31,7 +31,9 @@
           "default": [
             "javascriptreact",
             "typescriptreact",
-            "html"
+            "html",
+            "vue",
+            "svelte"
           ],
           "description": "List of language identifiers to apply formatting to."
         },
