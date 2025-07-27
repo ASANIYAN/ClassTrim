@@ -26,19 +26,23 @@ ClassTrim normalizes your class attributes by:
 
     Supporting all JSX className formats and standard HTML class
 
-Before and After
+### Before and After
 
-Before:
+**Before:**
 
-<div className="  container   header  container  button  ">
+```jsx
+<div className="  container   header   button  ">
 <span className={'  nav-item   active  '}>
-<button class="btn   btn   primary">
+<button className={`  btn   primary   large  `}>
+```
 
-After:
+**After:**
 
+```jsx
 <div className="container header button">
 <span className={'nav-item active'}>
-<button class="btn primary">
+<button className={`btn primary large`}>
+```
 
 Supported File Types
 
